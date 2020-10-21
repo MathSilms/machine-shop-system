@@ -1,9 +1,8 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UserRepository } from './user.repository';
 import { hash } from 'bcrypt'
 import { User } from './user.entity';
-import { ReturnUserDto } from './dtos/return-user.tdo';
 
 
 @Injectable()

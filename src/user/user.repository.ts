@@ -6,22 +6,27 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { hash, hashSync } from 'bcrypt';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
   async createUser(
     createUserDto: CreateUserDto,
   ): Promise<User> {
-    const {email, name, password } = createUserDto;
+    const {email, name, cpf, password } = createUserDto;
   
-    
+    const password_hash = await hashSync(password, 10)
+
     const user = this.create();
     user.name = name;
     user.email = email;
-    user.password = password
+    user.cpf = cpf;
+    user.password = password_hash
     
     try {
+      console.log(user)
       await user.save();
+      
       
       return user;
     } catch (error) {
