@@ -11,18 +11,21 @@ export class UserService {
         private userRepository:UserRepository,
     ){}
     async createUser(createUserDto:CreateUserDto): Promise<User>{
-        const { email, password } = createUserDto
-        const user = await this.userRepository.findOne({where:{email}})
-
-        if(user){
-            throw  new ConflictException('Dados inválidos')
+        const userExist = await this.userRepository.findOne({where:{ email:String }})
+       
+        if(userExist){
+            
+            throw new UnprocessableEntityException('Usuário já existente');
         }
-        createUserDto.password = await hash(password, 10, (err, hash )=>{
-            if(err){return console.log(err)}
-            return hash
-        })
-
          return await this.userRepository.createUser(createUserDto)  
+    }
+    async findUser(email:string){
+        const userExist = await this.userRepository.findOne({where:{ email:String }})
+        if(userExist){
+            return userExist
+        } else{
+            throw new UnprocessableEntityException('Usuário já existente');
+        }
     }
 
     // async createUser(createUserDto: CreateUserDto): Promise<Student> {
