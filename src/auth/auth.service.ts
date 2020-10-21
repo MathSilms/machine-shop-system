@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { compareSync } from 'bcrypt';
-import { UserRepository } from './user/user.repository';
+import { UserRepository } from '../user/user.repository';
 import { UserService } from '../user/user.service';
 
 @Injectable()
