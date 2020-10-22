@@ -20,7 +20,7 @@ export class UserService {
     }
     async findUser(email:string){
         const userExist = await this.userRepository.findOne({where:{email}})
-        
+        //console.log(email)
         if(userExist){
             return userExist
         } else{

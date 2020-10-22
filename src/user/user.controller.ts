@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { ReturnUserDto } from './dtos/return-user.tdo';
 import { UserService } from './user.service'
@@ -9,7 +10,7 @@ export class UserController {
         private userService:UserService
     ){}
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(LocalAuthGuard)
 @Post('create')
   async createUser(
     @Body() createUserDto: CreateUserDto,
@@ -17,7 +18,7 @@ export class UserController {
     const user = await this.userService.createUser(createUserDto);
     return {
       user,
-      message: 'Aluno cadastrado com sucesso',
+      message: 'Cadastro efetuado com sucesso!',
     };
   }
 
