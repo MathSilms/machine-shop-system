@@ -11,8 +11,8 @@ import {
   } from 'typeorm';
   
   @Entity()
-  @Unique(['email'])
-  export class User extends BaseEntity {
+  @Unique(['id_fornecedor'])
+  export class Products extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: string;
   
@@ -20,13 +20,22 @@ import {
     name: string;
     
     @Column({ nullable: false, type: 'varchar', length: 200 })
-    email: string;
+    marca: string;
 
     @Column({ nullable: false, type: 'varchar', length: 200  })
-    password: string;
+    modelo: string;
+    
+    @Column({ nullable: true, type: 'varchar', length: 200  })
+    descricao: string;
     
     @Column({ nullable: false, type: 'varchar', length: 200 })
-    cpf: string;
+    quantidade: number;
+    
+    @Column({ nullable: false, type: 'varchar', length: 200 })
+    preco: number;
+    
+    @Column({ nullable: false, type: 'varchar', length: 200 })
+    id_fornecedor: number;
 
     @CreateDateColumn()
     createdAt: Date;

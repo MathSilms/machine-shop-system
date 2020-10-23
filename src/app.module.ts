@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { AdressModule } from './adress/adress.module';
 import { StudentsModule } from './students/student.module';
+import { ProductsModule } from './products/products.module';
 
 
 @Module({
@@ -14,7 +15,8 @@ import { StudentsModule } from './students/student.module';
     UserModule, 
     StudentsModule, 
     AdressModule, 
-    AuthModule
+    AuthModule, 
+    ProductsModule
   ],
   controllers: [],
   providers: [],
