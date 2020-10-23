@@ -20,7 +20,7 @@ export class StudentsService {
   ) {}
   
   async createStudent(createStudentDto: CreateStudentDto): Promise<Student> {
-    const studentExist = await this.studentsRepository.findOne({where:{ cpf:String }})
+    const studentExist = await this.studentsRepository.findOne({where:{ cpf:createStudentDto.cpf }})
     if (studentExist) {
       throw new UnprocessableEntityException('Usuário já existente');
     } else {

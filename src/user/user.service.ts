@@ -28,7 +28,7 @@ export class UserService {
         }
     }
     async findAll(){
-        const users = await this.userRepository.find()
+        const users = await this.userRepository.findAndCount()
         if(users){
             return users
         } else{

@@ -16,23 +16,28 @@ export class ProductsRepository extends Repository<Products> {
   ): Promise<Products> {
     const { modelo, descricao, id_fornecedor, name, marca, preco, quantidade } = createProductsDto;
   
+    
 
     const product = this.create();
     product.name = name;
     product.modelo = modelo ;
-    product.descricao = descricao;
+    product.descricao = (descricao !== '' && descricao !== undefined) ? descricao : '';
     product.marca = marca;
     product.id_fornecedor = id_fornecedor;
     product.preco = preco;
     product.quantidade = quantidade;
     
     try {
-      console.log(product)
       await product.save();
       
       
       return product;
     } catch (error) {
+      
+      //console.log(error)
+      // if (error.code.toString() === ) {
+
+      // }
       if (error.code.toString() === '23505') {
         throw new ConflictException('Dados inválidos');
       } else {
