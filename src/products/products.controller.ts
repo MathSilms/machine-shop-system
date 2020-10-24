@@ -10,61 +10,67 @@ export class ProductController {
         private productService:ProductService
     ){}
 
-//@UseGuards(JwtAuthGuard)
-@Post('create')
-  async createProduct(
+  //@UseGuards(JwtAuthGuard)
+  @Post('create')
+    async createProduct(
     @Body() createProductsDto: CreateProductsDto,
-  ): Promise<ReturnProductDto> {
+    ): Promise<ReturnProductDto> {
     const products = await this.productService.createProduct(createProductsDto);
     return {
-      products,
-      message: 'Cadastro efetuado com sucesso!',
+    products,
+    message: 'Cadastro efetuado com sucesso!',
     };
   }
-  
-//@UseGuards(JwtAuthGuard)
-@Get()
-  async findAll(){
-    const products = await this.productService.findAll()
-    return products
+
+  //@UseGuards(JwtAuthGuard)
+  @Get('all')
+   async findAll(){
+  const products = await this.productService.findAll()
+  return products
   }
 
   @Get('/:modelo')
-  async findProductBymodelo(
-    @Param('modelo') modelo:string
+    async findProductBymodelo(
+  @Param('modelo') modelo:string
   ){
-    console.log(modelo)
-    const product = await this.productService.findProductBymodelo(modelo)
-    return product
+  //console.log(modelo)
+  const product = await this.productService.findProductBymodelo(modelo)
+  return product
   }
-  
-  @Get('modelo/:marca')
-  async findProductByMarca(
+
+  @Get('marca/:marca')
+    async findProductByMarca(
     @Param('marca') marca:string
-  ){
-    console.log(marca)
+    ){
+    //console.log(marca)
     const product = await this.productService.findProductByMarca(marca)
     return product
   }
 
-  @Get(':price')
-  async findProductByPrice(
+  @Get('preco/:price')
+    async findProductByPrice(
     @Param('price') price:number
-  ){
-    console.log(price)
+    ){
+    //console.log(price)
     const product = await this.productService.findProductByPrice(price)
     return product
   }
-  
+
 
   @Get('fornecedor/:fornecedor')
-  async findProductByFornecedor(
+    async findProductByFornecedor(
     @Param('fornecedor') fornecedor:number
-  ){
-    console.log(fornecedor)
+    ){
+    //console.log(fornecedor)
     const product = await this.productService.findProductByFornecedor(fornecedor)
     return product
   }
+  
+  @Get('all/price')
+  async findAlll(){
+ const total = await this.productService.countTotalPrice()
+ return `O valor total em caixa é de R$${total} `
+ }
 
 
 

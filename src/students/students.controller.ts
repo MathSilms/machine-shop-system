@@ -34,7 +34,8 @@ export class StudentsController {
   //Método GET : http://localhost:3000/student/Coloque-aqui-o-ID-do-aluno
 
   @Get(':id')
-  async findStudentById(@Param('id') id): Promise<ReturnStudentDto> {
+  async findStudentById(
+    @Param('id') id): Promise<ReturnStudentDto> {
     const student = await this.studentsService.findStudentById(id);
     return {
       message: 'Aluno encontrado com sucesso!',

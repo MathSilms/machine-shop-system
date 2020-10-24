@@ -32,8 +32,8 @@ export class ProductService {
         }
     }
 
-    async findProductByMarca(marca:string ){
-        const productExist = await this.productsRepository.find({where:{marca}})
+    async findProductByMarca(marca:string){
+        const productExist = await this.productsRepository.findAndCount({where:{marca}})
         
         if(productExist){
             return productExist
@@ -43,7 +43,7 @@ export class ProductService {
     }
 
     async findProductBymodelo(modelo:string){
-        const productsExist = await this.productsRepository.find({where:{modelo}})
+        const productsExist = await this.productsRepository.findAndCount({where:{modelo}})
         
         if(productsExist){
             return productsExist
@@ -53,7 +53,7 @@ export class ProductService {
     }
 
     async findProductByFornecedor(fornecedor:number){
-        const FornecedorExist = await this.productsRepository.find({where:{id_fornecedor:fornecedor}})
+        const FornecedorExist = await this.productsRepository.findAndCount({where:{id_fornecedor:fornecedor}})
         
         if(FornecedorExist){
             return FornecedorExist
@@ -62,12 +62,19 @@ export class ProductService {
         }
     }
 
-    async findProductByPrice(price:number){
-        const productPriceExist = await this.productsRepository.find({where:{price}})
+    async findProductByPrice(preco:number){
+        const productPriceExist = await this.productsRepository.findAndCount({where:{preco}})
+        
         if(productPriceExist){
             return productPriceExist
         }
         throw new UnprocessableEntityException('Produto não Cadastrado!');
+    }
+    async countTotalPrice(){
+        const total = await this.productsRepository.find({select:['preco']})
+        const reducered = (accumulator, currentValue) => accumulator + currentValue
+        const result = total.map(e=> e.preco).reduce(reducered)
+        return result
     }
 
 }
