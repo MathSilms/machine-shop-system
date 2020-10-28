@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException, UnprocessableEntityException, } from '@nestjs/common';
 import { CreateProductsDto } from './dtos/create-products.dto';
 import { ProductsRepository } from './products.repository';
-import {  Products } from './products.entity';
+import {  ProductsEntity } from './products.entity';
 
 
 @Injectable()
@@ -9,7 +9,7 @@ export class ProductService {
     constructor(
         private productsRepository:ProductsRepository,
     ){}
-    async createProduct(createProductsDto:CreateProductsDto): Promise<Products>{
+    async createProduct(createProductsDto:CreateProductsDto): Promise<ProductsEntity>{
         const product = await this.productsRepository.findOne({
             where:{ 
                 name:createProductsDto.name, 
@@ -70,11 +70,42 @@ export class ProductService {
         }
         throw new UnprocessableEntityException('Produto não Cadastrado!');
     }
+
     async countTotalPrice(){
         const total = await this.productsRepository.find({select:['preco']})
         const reducered = (accumulator, currentValue) => accumulator + currentValue
         const result = total.map(e=> e.preco).reduce(reducered)
         return result
     }
+
+    async countTotalPriceByMarca(marca:string){
+        const total = await this.productsRepository.find({where:{ marca }, select:['preco']})
+        const reducered = (accumulator, currentValue) => accumulator + currentValue
+        const result = total.map(e=> e.preco).reduce(reducered)
+        return result
+    }
+    
+    async countTotalPriceByfornecedor(fornecedor:string){
+        const total = await this.productsRepository.find({where:{ fornecedor }, select:['preco']})
+        const reducered = (accumulator, currentValue) => accumulator + currentValue
+        const result = total.map(e=> e.preco).reduce(reducered)
+        return result
+    }
+    
+    async countTotalPriceByModelo(Modelo:string){
+        const total = await this.productsRepository.find({where:{ Modelo }, select:['preco']})
+        const reducered = (accumulator, currentValue) => accumulator + currentValue
+        const result = total.map(e=> e.preco).reduce(reducered)
+        return result
+    }
+
+    async countTotalByParam(parametro:string){
+        const total = await this.productsRepository.find({where:{ parametro }, select:['preco']})
+        const reducered = (accumulator, currentValue) => accumulator + currentValue
+        const result = total.map(e=> e.preco).reduce(reducered)
+        return result
+    }
+
+
 
 }

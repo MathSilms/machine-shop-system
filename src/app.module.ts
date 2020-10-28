@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import { AdressModule } from './adress/adress.module';
 import { StudentsModule } from './students/student.module';
 import { ProductsModule } from './products/products.module';
+import { OrcamentoService } from './orcamento/orcamento.service';
+import { OrcamentoModule } from './orcamento/orcamento.module';
 
 
 @Module({
@@ -16,9 +18,10 @@ import { ProductsModule } from './products/products.module';
     StudentsModule, 
     AdressModule, 
     AuthModule, 
-    ProductsModule
+    ProductsModule, 
+    OrcamentoModule,  
   ],
   controllers: [],
-  providers: [],
+  providers: [OrcamentoService],
 })
 export class AppModule {}
