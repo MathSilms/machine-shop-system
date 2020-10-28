@@ -67,8 +67,40 @@ export class ProductController {
   }
   
   @Get('all/price')
-  async findAlll(){
+  async countTotalPrice(){
  const total = await this.productService.countTotalPrice()
+ return `O valor total em caixa é de R$${total} `
+ }
+ 
+ @Get('all/:marca/price')
+  async countTotalPriceBymarca(
+    @Param('marca') marca:string 
+  ){
+ const total = await this.productService.countTotalPriceByMarca(marca)
+ return `O valor total em caixa é de R$${total} `
+ }
+ 
+ @Get('all/:fornecedor/price')
+  async countTotalPriceByfornecedor(
+    @Param('fornecedor') fornecedor:string 
+  ){
+ const total = await this.productService.countTotalPriceByfornecedor(fornecedor)
+ return `O valor total em caixa é de R$${total} `
+ }
+ 
+ @Get('all/:fornecedor/price')
+  async countTotalPriceByModelo(
+    @Param('Modelo') Modelo:string 
+  ){
+ const total = await this.productService.countTotalPriceByfornecedor(Modelo)
+ return `O valor total em caixa é de R$${total} `
+ }
+ 
+ @Get('all/:parametro')
+  async countTotalByParametro(
+    @Param('parametro') parametro:string 
+  ){
+ const total = await this.productService.countTotalByParam(parametro)
  return `O valor total em caixa é de R$${total} `
  }
 

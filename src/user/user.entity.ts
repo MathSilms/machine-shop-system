@@ -10,7 +10,7 @@ import {
     //OneToMany
   } from 'typeorm';
   
-  @Entity()
+  @Entity('usuario')
   @Unique(['email'])
   export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
@@ -27,10 +27,13 @@ import {
     
     @Column({ nullable: false, type: 'varchar', length: 200 })
     cpf: string;
-
+    
     @CreateDateColumn()
     createdAt: Date;
   
     @UpdateDateColumn()
     updatedAt: Date;
+    
+    @Column({ nullable: true, type: 'date', length: 200 })
+    deleted_at: Date;
   }

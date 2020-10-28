@@ -1,7 +1,6 @@
 import {
     BaseEntity,
     Entity,
-    Unique,
     PrimaryGeneratedColumn,
     Column,
     CreateDateColumn,
@@ -10,10 +9,10 @@ import {
     //OneToMany
   } from 'typeorm';
   
-  @Entity()
-  export class Products extends BaseEntity {
+  @Entity('produtos')
+  export class ProductsEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
   
     @Column({ nullable: false, type: 'varchar', length: 200 })
     name: string;
@@ -37,8 +36,8 @@ import {
     id_fornecedor: number;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
   
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
   }

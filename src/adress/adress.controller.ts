@@ -7,7 +7,10 @@ import { StudentRepository } from 'src/students/students.repository';
 
 @Controller('adress')
 export class AdressController {
-  constructor(private adressService: AdressService, private studentRepository:StudentRepository) {}
+  constructor(
+    private adressService: AdressService, 
+    private studentRepository:StudentRepository
+    ) {}
 
   //Método POST : http://localhost:3000/student/Coloque aqui id do usuário
    //Corpo: street,number,complement, neighborhood
