@@ -22,6 +22,6 @@ import { OrcamentoModule } from './orcamento/orcamento.module';
     OrcamentoModule,  
   ],
   controllers: [],
-  providers: [OrcamentoService],
+  providers: [],
 })
 export class AppModule {}
