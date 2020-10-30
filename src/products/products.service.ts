@@ -78,33 +78,35 @@ export class ProductService {
         return result
     }
 
-    async countTotalPriceByMarca(marca:string){
-        const total = await this.productsRepository.find({where:{ marca }, select:['preco']})
-        const reducered = (accumulator, currentValue) => accumulator + currentValue
-        const result = total.map(e=> e.preco).reduce(reducered)
-        return result
-    }
-    
-    async countTotalPriceByfornecedor(fornecedor:string){
-        const total = await this.productsRepository.find({where:{ fornecedor }, select:['preco']})
-        const reducered = (accumulator, currentValue) => accumulator + currentValue
-        const result = total.map(e=> e.preco).reduce(reducered)
-        return result
-    }
-    
-    async countTotalPriceByModelo(Modelo:string){
-        const total = await this.productsRepository.find({where:{ Modelo }, select:['preco']})
-        const reducered = (accumulator, currentValue) => accumulator + currentValue
-        const result = total.map(e=> e.preco).reduce(reducered)
-        return result
-    }
-
     async countTotalByParam(parametro:string){
         const total = await this.productsRepository.find({where:{ parametro }, select:['preco']})
         const reducered = (accumulator, currentValue) => accumulator + currentValue
         const result = total.map(e=> e.preco).reduce(reducered)
         return result
     }
+    
+    // async countTotalPriceByMarca(marca:string){
+    //     const total = await this.productsRepository.find({where:{ marca }, select:['preco']})
+    //     const reducered = (accumulator, currentValue) => accumulator + currentValue
+    //     const result = total.map(e=> e.preco).reduce(reducered)
+    //     return result
+    // }
+    
+    // async countTotalPriceByfornecedor(fornecedor:string){
+    //     const total = await this.productsRepository.find({where:{ fornecedor }, select:['preco']})
+    //     const reducered = (accumulator, currentValue) => accumulator + currentValue
+    //     const result = total.map(e=> e.preco).reduce(reducered)
+    //     return result
+    // }
+    
+    // async countTotalPriceByModelo(Modelo:string){
+    //     const total = await this.productsRepository.find({where:{ Modelo }, select:['preco']})
+    //     const reducered = (accumulator, currentValue) => accumulator + currentValue
+    //     const result = total.map(e=> e.preco).reduce(reducered)
+    //     return result
+    // }
+
+   
 
 
 
