@@ -1,25 +1,25 @@
 
 
 import { EntityRepository, Repository } from 'typeorm';
-import { ProductsEntity } from './products.entity';
+import { EstoqueEntity } from './estoque.entity';
 import {
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { CreateProductsDto } from './dtos/create-products.dto';
+import { CreateEstoqueDto } from './dtos/create-estoque.dto';
 
 
-@EntityRepository(ProductsEntity)
-export class ProductsRepository extends Repository<ProductsEntity> {
+@EntityRepository(EstoqueEntity)
+export class EstoqueRepository extends Repository<EstoqueEntity> {
   async createProduct(
-    createProductsDto: CreateProductsDto,
-  ): Promise<ProductsEntity> {
-    const { modelo, descricao, id_fornecedor, name, marca, preco, quantidade } = createProductsDto;
+    createEstoqueDto: CreateEstoqueDto,
+  ): Promise<EstoqueEntity> {
+    const { modelo, descricao, id_fornecedor, produto , marca, preco, quantidade } = createEstoqueDto;
   
     
 
     const product = this.create();
-    product.name = name;
+    product.produto = produto;
     product.modelo = modelo ;
     product.descricao = (descricao !== '' && descricao !== undefined) ? descricao : '';
     product.marca = marca;

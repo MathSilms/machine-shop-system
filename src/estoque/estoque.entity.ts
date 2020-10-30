@@ -9,13 +9,13 @@ import {
     //OneToMany
   } from 'typeorm';
   
-  @Entity('produtos')
-  export class ProductsEntity extends BaseEntity {
+  @Entity('estoque')
+  export class EstoqueEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
   
     @Column({ nullable: false, type: 'varchar', length: 200 })
-    name: string;
+    produto: string;
     
     @Column({ nullable: false, type: 'varchar', length: 200 })
     marca: string;

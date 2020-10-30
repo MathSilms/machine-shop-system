@@ -62,7 +62,7 @@ export class ProductController {
   @Get('all/price')
   async countTotalPrice(){
  const total = await this.productService.countTotalPrice()
- return `O valor total em caixa é de R$${total} `
+ return `O valor total em caixa é de R$${total}`
  }
  
 //  @Get('all/:marca/price')

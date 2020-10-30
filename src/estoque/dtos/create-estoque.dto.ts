@@ -1,6 +1,6 @@
 
-export class CreateProductsDto {
-    name: string;
+export class CreateEstoqueDto {
+    produto: string;
     marca: string;
     modelo: string;
     descricao?: string;       
