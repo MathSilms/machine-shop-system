@@ -1,7 +1,7 @@
 
 
 import { EntityRepository, Repository } from 'typeorm';
-import { Products } from './products.entity';
+import { ProductsEntity } from './products.entity';
 import {
   ConflictException,
   InternalServerErrorException,
@@ -9,11 +9,11 @@ import {
 import { CreateProductsDto } from './dtos/create-products.dto';
 
 
-@EntityRepository(Products)
-export class ProductsRepository extends Repository<Products> {
+@EntityRepository(ProductsEntity)
+export class ProductsRepository extends Repository<ProductsEntity> {
   async createProduct(
     createProductsDto: CreateProductsDto,
-  ): Promise<Products> {
+  ): Promise<ProductsEntity> {
     const { modelo, descricao, id_fornecedor, name, marca, preco, quantidade } = createProductsDto;
   
     

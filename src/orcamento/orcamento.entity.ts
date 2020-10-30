@@ -8,9 +8,6 @@ export class OrcamentoEntity extends BaseEntity {
 id:number
 
 @Column()
-id_usuario:number
-
-@Column()
 name_usuario:string
 
 @Column()
@@ -47,7 +44,7 @@ quantidade:string
 status:boolean
 
 @Column()
-servico:Array<string>
+servico:string
 
 @Column()
 preco:number

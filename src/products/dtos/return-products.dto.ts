@@ -1,7 +1,7 @@
 
-import { Products } from '../products.entity';
+import { ProductsEntity } from '../products.entity';
 
 export class ReturnProductDto {
-  products: Products;
+  products: ProductsEntity;
   message: string;
 }
