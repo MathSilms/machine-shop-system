@@ -6,9 +6,10 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { AdressModule } from './adress/adress.module';
 import { StudentsModule } from './students/student.module';
-import { ProductsModule } from './products/products.module';
 import { OrcamentoService } from './orcamento/orcamento.service';
 import { OrcamentoModule } from './orcamento/orcamento.module';
+import { EntradaModule } from './entrada/entrada.module';
+import { EstoqueModule } from './estoque/estoque.module';
 
 
 @Module({
@@ -18,8 +19,8 @@ import { OrcamentoModule } from './orcamento/orcamento.module';
     StudentsModule, 
     AdressModule, 
     AuthModule, 
-    ProductsModule, 
-    OrcamentoModule,  
+    EstoqueModule, 
+    OrcamentoModule, EntradaModule,  
   ],
   controllers: [],
   providers: [],

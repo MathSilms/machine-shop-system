@@ -1,7 +1,7 @@
 
-import { ProductsEntity } from '../products.entity';
+import { EstoqueEntity } from '../estoque.entity';
 
-export class ReturnProductDto {
-  products: ProductsEntity;
+export class ReturnEstoqueDto {
+  products: EstoqueEntity;
   message: string;
 }

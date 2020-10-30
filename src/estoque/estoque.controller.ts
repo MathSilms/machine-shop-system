@@ -1,31 +1,31 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { LocalAuthGuard } from 'src/auth/local-auth.guard';
-import { CreateProductsDto } from './dtos/create-products.dto';
-import { ReturnProductDto } from './dtos/return-products.dto';
-import { ProductService } from './products.service'
+import { CreateEstoqueDto } from './dtos/create-estoque.dto';
+import { ReturnEstoqueDto } from './dtos/return-estoque.dto';
+import { EstoqueService } from './estoque.service'
 @Controller('products')
-export class ProductController {
+export class EstoqueController {
     constructor(
-        private productService:ProductService
+        private estoqueService:EstoqueService
     ){}
 
   //@UseGuards(JwtAuthGuard)
   @Post('create')
     async createProduct(
-    @Body() createProductsDto: CreateProductsDto,
-    ): Promise<ReturnProductDto> {
-    const products = await this.productService.createProduct(createProductsDto);
+    @Body() createEstoqueDto: CreateEstoqueDto,
+    ): Promise<ReturnEstoqueDto> {
+    const products = await this.estoqueService.createProduct(createEstoqueDto);
     return {
     products,
-    message: 'Cadastro efetuado com sucesso!',
+    message: 'Entrada efetuado com sucesso!',
     };
   }
 
   //@UseGuards(JwtAuthGuard)
   @Get('all')
    async findAll(){
-  const products = await this.productService.findAll()
+  const products = await this.estoqueService.findAll()
   return products
   }
 
@@ -61,7 +61,7 @@ export class ProductController {
   
   @Get('all/price')
   async countTotalPrice(){
- const total = await this.productService.countTotalPrice()
+ const total = await this.estoqueService.countTotalPrice()
  return `O valor total em caixa é de R$${total}`
  }
  
@@ -69,7 +69,7 @@ export class ProductController {
 //   async countTotalPriceBymarca(
 //     @Param('marca') marca:string 
 //   ){
-//  const total = await this.productService.countTotalPriceByMarca(marca)
+//  const total = await this.estoqueService.countTotalPriceByMarca(marca)
 //  return `O valor total em caixa é de R$${total} `
 //  }
  
@@ -79,7 +79,7 @@ export class ProductController {
 //   async countTotalPriceByModelo(
 //     @Param('Modelo') Modelo:string 
 //   ){
-//  const total = await this.productService.countTotalPriceByfornecedor(Modelo)
+//  const total = await this.estoqueService.countTotalPriceByfornecedor(Modelo)
 //  return `O valor total em caixa é de R$${total} `
 //  }
  
@@ -87,7 +87,7 @@ export class ProductController {
   async countTotalByParametro(
     @Param('parametro') parametro:string 
   ){
- const total = await this.productService.countTotalByParam(parametro)
+ const total = await this.estoqueService.countTotalByParam(parametro)
  return `O valor total em caixa é de R$${total} `
  }
 
