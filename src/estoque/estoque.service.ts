@@ -1,69 +1,75 @@
 import { Injectable, InternalServerErrorException, UnprocessableEntityException, } from '@nestjs/common';
 import { EstoqueRepository } from './estoque.repository';
-import {  EstoqueEntity } from './estoque.entity';
+import { EstoqueEntity } from './estoque.entity';
 import { CreateEstoqueDto } from './dtos/create-estoque.dto';
+// import { EntradaService } from 'src/entrada/entrada.service'; // isso da problema!
+// import { CreateEntradaDto } from 'src/entrada/dtos/create-entrada.dto';
 
 
 @Injectable()
 export class EstoqueService {
     constructor(
-        private estoqueRepository:EstoqueRepository,
-    ){}
-    async createProduct(createEstoqueDto:CreateEstoqueDto): Promise<EstoqueEntity>{
-        
-        const { marca, produto, modelo, preco ,quantidade } = createEstoqueDto
-        
+        private estoqueRepository: EstoqueRepository
+    ) { }
+    async createProduct(createEstoqueDto: CreateEstoqueDto): Promise<EstoqueEntity> {
+
+        const { marca, produto, modelo, preco, quantidade } = createEstoqueDto
+
         const product = await this.estoqueRepository.findOne({
-            where:{ 
-                produto, 
-                marca, 
+            where: {
+                produto,
+                marca,
                 modelo,
                 preco
-            }});
+            }
+        });
 
-        if(product){
-            createEstoqueDto.quantidade + quantidade 
+        if (product) {
+            createEstoqueDto.quantidade + quantidade
             return await this.estoqueRepository.save(createEstoqueDto)
         }
-         return await this.estoqueRepository.createProduct(createEstoqueDto)  
+        let origem = `compra do produto ${produto}`
+        let data = new Date
+        //this.entradaService.createEntradaByProduct(origem,data,quantidade)
+        return await this.estoqueRepository.createProduct(createEstoqueDto)
     }
 
-    async findAll(){
+    async findAll() {
         const products = await this.estoqueRepository.findAndCount()
-        if(products){
+        if (products) {
             return products
-        } else{
+        } else {
             throw new InternalServerErrorException('Algo deu errado!');
         }
     }
 
-    async findProductByParam(param:string){
-        const products = await this.estoqueRepository.findAndCount({where:{param}})
-        
-        if(products){
+    async findProductByParam(param: string) {
+        const products = await this.estoqueRepository.findAndCount({ where: { param } })
+
+        if (products) {
             return products
         }
         throw new UnprocessableEntityException('Produto não Cadastrado!');
     }
 
-    async countTotalPrice(){
-        const total = await this.estoqueRepository.find({select:['preco']})
+    async countTotalPrice() {
+        const total = await this.estoqueRepository.find({ select: ['preco'] })
         const reducered = (accumulator, currentValue) => accumulator + currentValue
-        const result = total.map(e=> e.preco).reduce(reducered)
+        const result = total.map(e => e.preco).reduce(reducered)
         return result
     }
 
-    async countTotalByParam(parametro:string){
-        const total = await this.estoqueRepository.find({where:{ parametro }, select:['preco']})
+    async countTotalByParam(parametro: string) {
+        const total = await this.estoqueRepository.find({ where: { parametro }, select: ['preco'] })
         const reducered = (accumulator, currentValue) => accumulator + currentValue
-        const result = total.map(e=> e.preco).reduce(reducered)
+        const result = total.map(e => e.preco).reduce(reducered)
         return result
     }
-    
+
 
     // async findProductByMarca(marca:string){
     //     const productExist = await this.estoqueRepository.findAndCount({where:{marca}})
-        
+
     //     if(productExist){
     //         return productExist
     //     } else{
@@ -73,7 +79,7 @@ export class EstoqueService {
 
     // async findProductBymodelo(modelo:string){
     //     const productsExist = await this.estoqueRepository.findAndCount({where:{modelo}})
-        
+
     //     if(productsExist){
     //         return productsExist
     //     } else{
@@ -83,7 +89,7 @@ export class EstoqueService {
 
     // async findProductByFornecedor(fornecedor:number){
     //     const FornecedorExist = await this.estoqueRepository.findAndCount({where:{id_fornecedor:fornecedor}})
-        
+
     //     if(FornecedorExist){
     //         return FornecedorExist
     //     } else{
@@ -93,28 +99,28 @@ export class EstoqueService {
 
     // async findProductByPrice(preco:number){
     //     const productPriceExist = await this.estoqueRepository.findAndCount({where:{preco}})
-        
+
     //     if(productPriceExist){
     //         return productPriceExist
     //     }
     //     throw new UnprocessableEntityException('Produto não Cadastrado!');
     // }
 
-   
+
     // async countTotalPriceByMarca(marca:string){
     //     const total = await this.productsRepository.find({where:{ marca }, select:['preco']})
     //     const reducered = (accumulator, currentValue) => accumulator + currentValue
     //     const result = total.map(e=> e.preco).reduce(reducered)
     //     return result
     // }
-    
+
     // async countTotalPriceByfornecedor(fornecedor:string){
     //     const total = await this.productsRepository.find({where:{ fornecedor }, select:['preco']})
     //     const reducered = (accumulator, currentValue) => accumulator + currentValue
     //     const result = total.map(e=> e.preco).reduce(reducered)
     //     return result
     // }
-    
+
     // async countTotalPriceByModelo(Modelo:string){
     //     const total = await this.productsRepository.find({where:{ Modelo }, select:['preco']})
     //     const reducered = (accumulator, currentValue) => accumulator + currentValue
@@ -122,7 +128,7 @@ export class EstoqueService {
     //     return result
     // }
 
-   
+
 
 
 

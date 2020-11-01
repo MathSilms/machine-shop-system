@@ -10,6 +10,7 @@ import { OrcamentoService } from './orcamento/orcamento.service';
 import { OrcamentoModule } from './orcamento/orcamento.module';
 import { EntradaModule } from './entrada/entrada.module';
 import { EstoqueModule } from './estoque/estoque.module';
+import { SaidaModule } from './saida/saida.module';
 
 
 @Module({
@@ -20,7 +21,7 @@ import { EstoqueModule } from './estoque/estoque.module';
     AdressModule, 
     AuthModule, 
     EstoqueModule, 
-    OrcamentoModule, EntradaModule,  
+    OrcamentoModule, EntradaModule, SaidaModule,  
   ],
   controllers: [],
   providers: [],

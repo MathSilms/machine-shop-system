@@ -24,4 +24,17 @@ export class EntradaService {
             throw new UnprocessableEntityException()
         }
     }
+    // async createEntradaByProduct(origem:string,data:Date,quantidade:number){
+    //     try{
+    //         const Data = new Date
+    //         console.log(Data)
+    //         origem.trim().toLocaleLowerCase()
+    //         data = Data
+            
+    //         return await this.entradaRepository.create({origem, data , quantidade})
+    //         } catch(err){
+    //             console.log(err)
+    //             throw new UnprocessableEntityException()
+    //         }
+    // }
 }

@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { LocalAuthGuard } from 'src/auth/local-auth.guard';
+// import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+// import { LocalAuthGuard } from 'src/auth/local-auth.guard';
+// import { EntradaService } from 'src/entrada/entrada.service';
 import { CreateEstoqueDto } from './dtos/create-estoque.dto';
 import { ReturnEstoqueDto } from './dtos/return-estoque.dto';
 import { EstoqueService } from './estoque.service'
